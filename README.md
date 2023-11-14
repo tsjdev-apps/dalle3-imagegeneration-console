@@ -2,7 +2,7 @@
 
 ![Header](./docs/dalle3-header.png)
 
-This repository contains a simple console application written in .NET 7 to demonstrate how to generate images using the DALL-E 3 API provided by [OpenAI](https://openai.com).
+This repository contains a simple console application written in .NET 8 to demonstrate how to generate images using the DALL-E 3 API provided by [OpenAI](https://openai.com).
 
 
 ## Usage
