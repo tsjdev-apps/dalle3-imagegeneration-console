@@ -3,10 +3,14 @@ using Spectre.Console;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-var isRunning = true;
+
+bool isRunning = true;
 
 while (isRunning)
 {
+    // Clear console
+    AnsiConsole.Clear();
+
     // Create header
     CreateHeader();
 
@@ -52,7 +56,7 @@ while (isRunning)
             GenerateImageRootResponse? response = await result.Content.ReadFromJsonAsync<GenerateImageRootResponse>();
 
             // Show link
-            var imageResponse = response?.Data?.FirstOrDefault();
+            GenerateImageResponse? imageResponse = response?.Data?.FirstOrDefault();
 
             if (!string.IsNullOrEmpty(imageResponse?.RevisedPrompt))
             {
@@ -144,9 +148,7 @@ static string GetQuality()
         new SelectionPrompt<string>()
         .Title("Please select the [yellow]quality[/] of your image.")
         .PageSize(10)
-        .AddChoices(new[] {
-            "STANDARD", "HD"
-        }));
+        .AddChoices(["STANDARD", "HD"]));
 
 /// <summary>
 ///     Prompts the user for the size of the generated image.
@@ -157,9 +159,7 @@ static string GetSize()
         new SelectionPrompt<string>()
         .Title("Please select the [yellow]size[/] of your image.")
         .PageSize(10)
-        .AddChoices(new[] {
-            "1024x1024", "1792x1024", "1024x1792"
-        }));
+        .AddChoices(["1024x1024", "1792x1024", "1024x1792"]));
 
 /// <summary>
 ///     Prompts the user for the style of the generated image.
@@ -170,6 +170,4 @@ static string GetStyle()
         new SelectionPrompt<string>()
         .Title("Please select the [yellow]style[/] of your image.")
         .PageSize(10)
-        .AddChoices(new[] {
-            "VIVID", "NATURAL"
-        }));
+        .AddChoices(["VIVID", "NATURAL"]));
